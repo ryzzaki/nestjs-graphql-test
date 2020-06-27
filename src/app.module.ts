@@ -16,7 +16,8 @@ import { Student } from './student/entity/student.entity';
       entities: [Lesson, Student],
     }),
     GraphQLModule.forRoot({
-      autoSchemaFile: true,
+      autoSchemaFile: 'schema.gql',
+      path: '/api/graphql',
     }),
     LessonModule,
     StudentModule,

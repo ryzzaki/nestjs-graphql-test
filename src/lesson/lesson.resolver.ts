@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Resolver,
   Query,
@@ -15,30 +14,30 @@ import { AssignStudentsToLessonInput } from './inputs/assignStudentsToLesson.inp
 import { StudentService } from 'src/student/student.service';
 import { Student } from 'src/student/entity/student.entity';
 
-@Resolver(of => LessonType)
+@Resolver(() => LessonType)
 export class LessonResolver {
   constructor(
     private readonly lessonService: LessonService,
     private readonly studentService: StudentService,
   ) {}
-  @Query(returns => LessonType)
+  @Query(() => LessonType)
   lesson(@Args('id') id: string): Promise<Lesson> {
     return this.lessonService.getLessonById(id);
   }
 
-  @Query(returns => [LessonType])
+  @Query(() => [LessonType])
   getAllLessons(): Promise<Lesson[]> {
     return this.lessonService.getAllLessons();
   }
 
-  @Mutation(returns => LessonType)
+  @Mutation(() => LessonType)
   createLesson(
     @Args('createLessonInput') createLessonInput: CreateLessonInput,
   ): Promise<Lesson> {
     return this.lessonService.createLesson(createLessonInput);
   }
 
-  @Mutation(returns => LessonType)
+  @Mutation(() => LessonType)
   assignStudentsToLesson(
     @Args('assignStudentsToLessonInput')
     assignStudentsToLessonInput: AssignStudentsToLessonInput,

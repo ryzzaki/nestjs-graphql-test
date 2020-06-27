@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { LessonModule } from './lesson/lesson.module';
-import { Lesson } from './lesson/lesson.entity';
 import { StudentModule } from './student/student.module';
+import { Lesson } from './lesson/entity/lesson.entity';
+import { Student } from './student/entity/student.entity';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { StudentModule } from './student/student.module';
       url: 'mongodb://localhost/school',
       synchronize: true,
       useUnifiedTopology: true,
-      entities: [Lesson],
+      entities: [Lesson, Student],
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: true,
